@@ -1,0 +1,12 @@
+streamlit
+protobuf==3.20.3
+pandas
+numpy
+openpyxl
+xlsxwriter
+matplotlib
+reportlab
+pdfplumber
+pypdf
+camelot-py
+opencv-python-headless
