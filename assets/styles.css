@@ -2007,11 +2007,12 @@ input:focus, select:focus, textarea:focus {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
-    height: 100%;
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
-    min-height: 260px;
 }
 
 .welcome-step-card .wsc-desc {
@@ -2237,7 +2238,7 @@ div[data-testid="stHorizontalBlock"]:has(.info-card-grid) {
        -moz-border-radius: 16px;
             border-radius: 16px;
     padding: 1.5rem 1.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     position: relative;
     overflow: hidden;
     -webkit-animation: fade-slide-up 0.5s ease both;
@@ -2246,6 +2247,22 @@ div[data-testid="stHorizontalBlock"]:has(.info-card-grid) {
        -moz-transition: border-color 0.25s ease, box-shadow 0.25s ease;
          -o-transition: border-color 0.25s ease, box-shadow 0.25s ease;
             transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
 }
 
 .guidance-card:hover {
@@ -3024,18 +3041,31 @@ div[data-baseweb="listbox"] li:hover {
     border-radius: 16px !important;
     -webkit-border-radius: 16px !important;
     padding: 1.5rem 1.75rem !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 0 !important;
     position: relative !important;
     overflow: hidden !important;
     animation: fade-slide-up 0.5s ease both !important;
     -webkit-animation: fade-slide-up 0.5s ease both !important;
     -webkit-transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
             transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
-
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
+    -webkit-box-sizing: border-box !important;
+            box-sizing: border-box !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+    -webkit-box-align: start !important;
+        -ms-flex-align: start !important;
+            align-items: flex-start !important;
     /* Fix: ensure content renders as HTML not plain text */
     white-space: normal !important;
     font-family: var(--font-sans) !important;
-    display: block !important;
 }
 .guidance-card:hover {
     border-color: rgba(96,165,250,0.5) !important;
@@ -3497,4 +3527,53 @@ div[data-testid="stDataEditor"] .gdg-overlay-editor {
 .gdg-overlay-editor option {
     background: #0f172a !important;
     color: #f8fafc !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   EQUAL HEIGHT CARDS — All 6 step + guidance cards same 300px height
+   ══════════════════════════════════════════════════════════════════════════ */
+.welcome-steps {
+    -webkit-box-align: stretch !important;
+        -ms-flex-align: stretch !important;
+            align-items: stretch !important;
+}
+
+/* Streamlit columns containing step cards or guidance cards */
+div[data-testid="stHorizontalBlock"]:has(.welcome-step-card),
+div[data-testid="stHorizontalBlock"]:has(.guidance-card) {
+    -webkit-box-align: stretch !important;
+        -ms-flex-align: stretch !important;
+            align-items: stretch !important;
+}
+
+div[data-testid="stHorizontalBlock"]:has(.welcome-step-card) > div[data-testid="stColumn"],
+div[data-testid="stHorizontalBlock"]:has(.guidance-card) > div[data-testid="stColumn"] {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+    -webkit-box-align: stretch !important;
+        -ms-flex-align: stretch !important;
+            align-items: stretch !important;
+}
+
+.welcome-step-card,
+.guidance-card {
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
+    -webkit-box-sizing: border-box !important;
+       -moz-box-sizing: border-box !important;
+            box-sizing: border-box !important;
+}
+
+/* guidance-card-desc grows to fill remaining space */
+.guidance-card-desc {
+    -webkit-box-flex: 1 !important;
+        -ms-flex: 1 !important;
+            flex: 1 !important;
+    overflow: hidden;
 }

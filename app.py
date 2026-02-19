@@ -7,14 +7,6 @@ from pathlib import Path
 # ── third-party ────────────────────────────────────────────────────────────
 import streamlit as st
 import pandas as pd
-
-# ── Page Configuration (MUST be first Streamlit call) ──────────────────────
-st.set_page_config(
-    page_title="Data Quality Intelligence Studio",
-    page_icon="🔍",
-    layout="wide",
-    initial_sidebar_state="collapsed",
-)
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Wedge
@@ -26,6 +18,65 @@ from matplotlib.patches import Wedge
 from modules.config          import AppConfig
 from modules.case_management import page_case_management, init_case_management_state
 from modules.ui_components   import UIComponents
+
+
+# ══════════════════════════════════════════════════════════════════════════
+#  PATCH — Fix broken HTML in UIComponents methods
+#  The original render_lottie_upload produces raw ' style="color" text
+#  visible in the UI. These replacements use safe, working HTML.
+# ══════════════════════════════════════════════════════════════════════════
+def _render_lottie_upload_fixed(caption: str = "Upload both files above to begin") -> None:
+    st.markdown(
+        """
+        <div class="lottie-slot">
+            <div class="lottie-frame lottie-upload-fallback"></div>
+            <p class="lottie-caption">{caption}</p>
+        </div>
+        """.replace("{caption}", caption),
+        unsafe_allow_html=True,
+    )
+
+def _render_arrow_down_fixed() -> None:
+    st.markdown(
+        '<div class="guidance-arrow-down">⬇</div>',
+        unsafe_allow_html=True,
+    )
+
+def _render_upload_hint_fixed(kind: str = "dataset") -> None:
+    if kind == "dataset":
+        label = "📂 Master Dataset"
+        tip   = "CSV, Excel (.xlsx/.xls/.xlsm), JSON, Parquet, ODS or XML"
+    else:
+        label = "📜 Rules / Rulebook"
+        tip   = "CSV/Excel with column_name, rule, dimension, message — or a JSON rulebook"
+    st.markdown(
+        '<p style="font-size:0.82rem;color:#64748b;margin-bottom:0.3rem;">'
+        + label + " &nbsp;·&nbsp; " + tip
+        + "</p>",
+        unsafe_allow_html=True,
+    )
+
+def _render_results_header_fixed(score: float) -> None:
+    if score >= 80:
+        cls, emoji, label = "dq-score-excellent", "🏆", "Excellent"
+    elif score >= 60:
+        cls, emoji, label = "dq-score-good",      "✅", "Good"
+    elif score >= 40:
+        cls, emoji, label = "dq-score-fair",      "⚠️", "Fair"
+    else:
+        cls, emoji, label = "dq-score-poor",      "❌", "Poor"
+    st.markdown(
+        '<div class="' + cls + '">'
+        + '<h2 style="margin:0;">' + emoji + ' ' + label + ' — ' + f'{score:.1f}%' + '</h2>'
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+
+# Patch UIComponents with fixed methods
+UIComponents.render_lottie_upload  = _render_lottie_upload_fixed
+UIComponents.render_arrow_down     = _render_arrow_down_fixed
+UIComponents.render_upload_hint    = _render_upload_hint_fixed
+UIComponents.render_results_header = _render_results_header_fixed
 
 # data_quality_core  ←  dq_engine + rule_executor + rulebook_builder
 from modules.data_quality_core import (
@@ -687,8 +738,6 @@ def page_dq():
         message="Configure the object name below then click "
                 "<strong>🚀 Run DQ Assessment</strong> to begin scoring.",
     )
-
-    # ── Object Name + Sheet Selector ───────────────────────────────────────
     cfg1, cfg2 = st.columns(2)
     with cfg1:
         obj_name = st.text_input(
@@ -698,7 +747,6 @@ def page_dq():
             help="Used to label reports and link results to the Maturity Assessment.",
             key="dq_obj_name_input",
         )
-
     with cfg2:
         sheet_name = None
         if data_file.name.lower().endswith((".xlsx", ".xls", ".xlsm")):
@@ -997,17 +1045,42 @@ def page_maturity():
         st.markdown('</div>', unsafe_allow_html=True)
         st.stop()
 
+    # ── DEFERRED SYNC FIX ──────────────────────────────────────────────────
+    # When the user changes objects/dims in the multiselect, Streamlit reruns
+    # immediately. If we call sync_response_tables() in that same rerun, it
+    # rebuilds DataFrames and pops editor snapshot keys while Streamlit is
+    # still reconciling widget state — causing the dropdown to lose focus and
+    # discard the selection (requiring multiple clicks).
+    #
+    # Fix: on the first rerun after a change, just set a _sync_pending flag
+    # and trigger another rerun. Only on the second rerun (when widget state
+    # is fully settled) do we actually perform the sync.
+    # ───────────────────────────────────────────────────────────────────────
     prev_objs = st.session_state.get("_last_sync_objects")
     prev_dims = st.session_state.get("_last_sync_dims")
     curr_objs = st.session_state.mat_objects
     curr_dims = st.session_state.mat_dims
 
-    if prev_objs != curr_objs or prev_dims != curr_dims:
-        sync_response_tables()
-        for d in curr_dims:
-            st.session_state.pop(f"mat_snap_{d}", None)
-        st.session_state["_last_sync_objects"] = list(curr_objs)
-        st.session_state["_last_sync_dims"]    = list(curr_dims)
+    needs_sync = (
+        prev_objs is None
+        or prev_dims is None
+        or set(prev_objs) != set(curr_objs)
+        or set(prev_dims) != set(curr_dims)
+    )
+
+    if needs_sync:
+        if st.session_state.get("_sync_pending"):
+            # Second rerun: widget state is settled, safe to sync now
+            sync_response_tables()
+            for d in curr_dims:
+                st.session_state.pop(f"mat_snap_{d}", None)
+            st.session_state["_last_sync_objects"] = list(curr_objs)
+            st.session_state["_last_sync_dims"]    = list(curr_dims)
+            st.session_state["_sync_pending"] = False
+        else:
+            # First rerun after change: just flag and rerun again
+            st.session_state["_sync_pending"] = True
+            st.rerun()
 
     if dq_score is not None and not st.session_state.get("dq_autofilled"):
         autofill_dq_dimension(dq_score)
