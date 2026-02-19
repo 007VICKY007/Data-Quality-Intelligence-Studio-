@@ -1,0 +1,9 @@
+column_name,rule,dimension,message,expression,severity
+user_name,not_null,Completeness,User name is required,,HIGH
+user_name + address,uniqueness,Uniqueness,Combination should identify a single unique entity; duplicates should be flagged for review,,HIGH
+email,not_null,Completeness,Email address is required,,HIGH
+email,email_format,Standardization,Email must be in valid format,,MEDIUM
+phone,regex,Standardization,Phone must match format,^[0-9]{10}$,MEDIUM
+age,range,Validity,Age must be between 0 and 120,"0,120",MEDIUM
+status,allowed_values,Validity,Status must be Active or Inactive,"Active,Inactive",LOW
+city,no_special_chars,Standardization,City should not contain special characters,,LOW
