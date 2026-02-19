@@ -1,0 +1,609 @@
+{
+  "rules": [
+    {
+      "column": "mensa_sku_id",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "mensa_sku_id: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "mensa_sku_id",
+      "dimension": "Uniqueness",
+      "rule_type": "uniqueness",
+      "expression": null,
+      "message": "mensa_sku_id: uniqueness validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "mensa_style_id",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "mensa_style_id: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "mensa_style_id",
+      "dimension": "Validation",
+      "rule_type": "must be valid style reference",
+      "expression": null,
+      "message": "mensa_style_id: must be valid style reference validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "sku_id",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "sku_id: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "sku_id",
+      "dimension": "Uniqueness",
+      "rule_type": "uniqueness",
+      "expression": null,
+      "message": "sku_id: uniqueness validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "ean_code",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "ean_code: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "ean_code",
+      "dimension": "Uniqueness",
+      "rule_type": "uniqueness",
+      "expression": null,
+      "message": "ean_code: uniqueness validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "ean_code",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "ean_code: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "tax_code",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "tax_code: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "tax_code",
+      "dimension": "Validation",
+      "rule_type": "must be valid tax classification",
+      "expression": null,
+      "message": "tax_code: must be valid tax classification validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "brand_id",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "brand_id: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "brand_id",
+      "dimension": "Validation",
+      "rule_type": "must exist in brand master",
+      "expression": null,
+      "message": "brand_id: must exist in brand master validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "size",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "size: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "size",
+      "dimension": "Standardization",
+      "rule_type": "must follow standard size format",
+      "expression": null,
+      "message": "size: must follow standard size format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "mrp",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "mrp: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "mrp",
+      "dimension": "Validation",
+      "rule_type": "must be greater than zero",
+      "expression": null,
+      "message": "mrp: must be greater than zero validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "is_virtual",
+      "dimension": "Validation",
+      "rule_type": "must be y/n or boolean",
+      "expression": null,
+      "message": "is_virtual: must be y/n or boolean validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "created_on",
+      "dimension": "Completeness",
+      "rule_type": "should not be null",
+      "expression": null,
+      "message": "created_on: should not be null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "created_on",
+      "dimension": "Validation",
+      "rule_type": "date_format",
+      "expression": null,
+      "message": "created_on: date_format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "cogs",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "cogs: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "sync_status",
+      "dimension": "Validation",
+      "rule_type": "must be from allowed status list",
+      "expression": null,
+      "message": "sync_status: must be from allowed status list validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "scan_identifier",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "scan_identifier: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "scan_identifier",
+      "dimension": "Uniqueness",
+      "rule_type": "uniqueness",
+      "expression": null,
+      "message": "scan_identifier: uniqueness validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "channel_tolerance_days",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "channel_tolerance_days: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "grn_tolerance_days",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "grn_tolerance_days: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "return_tolerance_days",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "return_tolerance_days: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "height",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "height: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "weight",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "weight: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "length",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "length: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "breadth",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "breadth: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "gender",
+      "dimension": "Validation",
+      "rule_type": "must be from allowed gender list",
+      "expression": null,
+      "message": "gender: must be from allowed gender list validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "group_id",
+      "dimension": "Validation",
+      "rule_type": "must exist in group master",
+      "expression": null,
+      "message": "group_id: must exist in group master validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "image_link",
+      "dimension": "Validation",
+      "rule_type": "must be valid url",
+      "expression": null,
+      "message": "image_link: must be valid url validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "updated_on",
+      "dimension": "Validation",
+      "rule_type": "date_format",
+      "expression": null,
+      "message": "updated_on: date_format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "updated_on",
+      "dimension": "Validation",
+      "rule_type": "must be >= created_on",
+      "expression": null,
+      "message": "updated_on: must be >= created_on validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "asin",
+      "dimension": "Validation",
+      "rule_type": "must follow amazon asin format",
+      "expression": null,
+      "message": "asin: must follow amazon asin format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "upc_code",
+      "dimension": "Validation",
+      "rule_type": "must be valid upc format",
+      "expression": null,
+      "message": "upc_code: must be valid upc format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "fn_sku",
+      "dimension": "Validation",
+      "rule_type": "must be valid fulfillment sku",
+      "expression": null,
+      "message": "fn_sku: must be valid fulfillment sku validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "hts_code",
+      "dimension": "Validation",
+      "rule_type": "must follow hts format",
+      "expression": null,
+      "message": "hts_code: must follow hts format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "drawback_code",
+      "dimension": "Validation",
+      "rule_type": "must be valid drawback code",
+      "expression": null,
+      "message": "drawback_code: must be valid drawback code validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "rpc_name",
+      "dimension": "Validation",
+      "rule_type": "no_special_chars",
+      "expression": null,
+      "message": "rpc_name: no_special_chars validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "rpc_email",
+      "dimension": "Validation",
+      "rule_type": "email_format",
+      "expression": null,
+      "message": "rpc_email: email_format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "manufacturing_type",
+      "dimension": "Validation",
+      "rule_type": "must be from allowed list",
+      "expression": null,
+      "message": "manufacturing_type: must be from allowed list validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "htsus_code",
+      "dimension": "Validation",
+      "rule_type": "must follow htsus format",
+      "expression": null,
+      "message": "htsus_code: must follow htsus format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "product_length",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "product_length: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "product_breadth",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "product_breadth: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "product_height",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "product_height: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "product_weight",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "product_weight: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "created_by",
+      "dimension": "Completeness",
+      "rule_type": "should not be null",
+      "expression": null,
+      "message": "created_by: should not be null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "updated_by",
+      "dimension": "Completeness",
+      "rule_type": "date_format",
+      "expression": null,
+      "message": "updated_by: date_format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "shelf_life",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "shelf_life: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "country",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "country: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "country",
+      "dimension": "Validation",
+      "rule_type": "must be valid country",
+      "expression": null,
+      "message": "country: must be valid country validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "id",
+      "dimension": "Uniqueness",
+      "rule_type": "uniqueness",
+      "expression": null,
+      "message": "id: uniqueness validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "deleted",
+      "dimension": "Validation",
+      "rule_type": "must be 0/1 flag",
+      "expression": null,
+      "message": "deleted: must be 0/1 flag validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "style_master_id",
+      "dimension": "Validation",
+      "rule_type": "must exist in style master",
+      "expression": null,
+      "message": "style_master_id: must exist in style master validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "active",
+      "dimension": "Validation",
+      "rule_type": "must be y/n flag",
+      "expression": null,
+      "message": "active: must be y/n flag validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "image_link_conversion_status",
+      "dimension": "Validation",
+      "rule_type": "must be valid status",
+      "expression": null,
+      "message": "image_link_conversion_status: must be valid status validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "s3_image_link",
+      "dimension": "Validation",
+      "rule_type": "must be valid url",
+      "expression": null,
+      "message": "s3_image_link: must be valid url validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "country_of_origin",
+      "dimension": "Validation",
+      "rule_type": "must be valid country",
+      "expression": null,
+      "message": "country_of_origin: must be valid country validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "collection",
+      "dimension": "Validation",
+      "rule_type": "must follow collection master",
+      "expression": null,
+      "message": "collection: must follow collection master validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "replenishment_flag",
+      "dimension": "Validation",
+      "rule_type": "must be y/n flag",
+      "expression": null,
+      "message": "replenishment_flag: must be y/n flag validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "vendor_lead_time",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "vendor_lead_time: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "size_type",
+      "dimension": "Validation",
+      "rule_type": "must be from allowed size type list",
+      "expression": null,
+      "message": "size_type: must be from allowed size type list validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "domestic_offline_mrp",
+      "dimension": "Validation",
+      "rule_type": "numeric_only",
+      "expression": null,
+      "message": "domestic_offline_mrp: numeric_only validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "style_id",
+      "dimension": "Validation",
+      "rule_type": "must exist in style master",
+      "expression": null,
+      "message": "style_id: must exist in style master validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "product_name",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "product_name: not_null validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "product_name",
+      "dimension": "Standardization",
+      "rule_type": "trim spaces & standardize case",
+      "expression": null,
+      "message": "product_name: trim spaces & standardize case validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "category_id",
+      "dimension": "Validation",
+      "rule_type": "must exist in category master",
+      "expression": null,
+      "message": "category_id: must exist in category master validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "color",
+      "dimension": "Standardization",
+      "rule_type": "must follow standard color list",
+      "expression": null,
+      "message": "color: must follow standard color list validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "is_perishable",
+      "dimension": "Validation",
+      "rule_type": "must be y/n flag",
+      "expression": null,
+      "message": "is_perishable: must be y/n flag validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "hsn_code",
+      "dimension": "Validation",
+      "rule_type": "must follow hsn format",
+      "expression": null,
+      "message": "hsn_code: must follow hsn format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "middle_east_hsn_code",
+      "dimension": "Validation",
+      "rule_type": "must follow regional hsn format",
+      "expression": null,
+      "message": "middle_east_hsn_code: must follow regional hsn format validation failed",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "name",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "name: not_null validation failed",
+      "severity": "MEDIUM"
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-16T21:39:18.124423",
+    "total_rules": 75,
+    "source": "rules_dataset"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "rules": [
+    {
+      "column": "user_name",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "User name is required",
+      "severity": "HIGH"
+    },
+    {
+      "rule_type": "uniqueness_combination",
+      "columns": [
+        "user_name",
+        "address"
+      ],
+      "dimension": "Uniqueness",
+      "message": "Combination should identify a single unique entity; duplicates should be flagged for review",
+      "severity": "HIGH"
+    },
+    {
+      "column": "email",
+      "dimension": "Completeness",
+      "rule_type": "not_null",
+      "expression": null,
+      "message": "Email address is required",
+      "severity": "HIGH"
+    },
+    {
+      "column": "email",
+      "dimension": "Standardization",
+      "rule_type": "email_format",
+      "expression": null,
+      "message": "Email must be in valid format",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "phone",
+      "dimension": "Standardization",
+      "rule_type": "regex",
+      "expression": "^[0-9]{10}$",
+      "message": "Phone must match format",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "age",
+      "dimension": "Validity",
+      "rule_type": "range",
+      "expression": "0,120",
+      "message": "Age must be between 0 and 120",
+      "severity": "MEDIUM"
+    },
+    {
+      "column": "status",
+      "dimension": "Validity",
+      "rule_type": "allowed_values",
+      "expression": "Active,Inactive",
+      "message": "Status must be Active or Inactive",
+      "severity": "LOW"
+    },
+    {
+      "column": "city",
+      "dimension": "Standardization",
+      "rule_type": "no_special_chars",
+      "expression": null,
+      "message": "City should not contain special characters",
+      "severity": "LOW"
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-19T14:05:12.185785",
+    "total_rules": 8,
+    "source": "rules_dataset"
+  }
+}
